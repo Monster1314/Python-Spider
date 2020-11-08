@@ -1,3 +1,12 @@
+"""
+1. 采集网址 https://www.zhihu.com/people/ponyma/followers
+
+2. 采集目标
+    - 从马**腾的粉丝信息开始, 采集前十页数据
+    - 需要粉丝的昵称和粉丝头像的url地址
+    - 用正则表达式采集
+"""
+
 import requests
 import re
 import time
