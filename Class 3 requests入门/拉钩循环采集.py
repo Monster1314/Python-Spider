@@ -1,3 +1,18 @@
+"""
+    请求拉勾网 python 前三页的招聘数据，
+    (温馨提示：速度不要太快，小心被封)
+
+    需求：
+        获取以下字段信息，用print（）函数打印即可
+        'city': 城市
+        'companyFullName': 公司名
+        'companySize': 公司规模
+        'education': 学历
+        'positionName': 职位名称
+        'salary': 薪资
+        'workYear': 工作时间
+"""
+
 import requests
 import time
 
