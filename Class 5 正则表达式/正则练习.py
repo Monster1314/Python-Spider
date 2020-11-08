@@ -1,3 +1,10 @@
+"""
+    根据下方出现的电话号码进行加密
+    
+    需求:
+        最终效果: 181****5458
+"""
+
 xml_str = """
 <?xml version="1.0" encoding="UTF-8"?>
 <TowerRouteTask>
