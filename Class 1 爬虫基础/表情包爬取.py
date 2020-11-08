@@ -1,3 +1,10 @@
+"""
+表情包爬取
+将此页面下的前十页图片全部获取下来：https://fabiaoqing.com/biaoqing
+
+清下下方开始编写代码
+"""
+
 import requests
 import re
 
