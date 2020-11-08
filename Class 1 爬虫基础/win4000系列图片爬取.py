@@ -1,3 +1,9 @@
+"""
+一次性将一个系列图片全部爬取下来
+
+请下下方开始编写代码
+"""
+
 import requests
 import re
 import time
