@@ -1,3 +1,15 @@
+"""
+    使用 css 选择器将猫眼 100 十页全部电影信息全部提取出来。
+    目标网址：https://maoyan.com/board/4
+    name（电影名）
+    star（主演）
+    releasetime（上映时间）
+    score（评分）
+
+    提取出来print（）打印即可
+    温馨提示: 爬取速度不要太快,加延迟,避免被封导致以后请求不到数据!
+"""
+
 import requests
 import parsel
 import time
