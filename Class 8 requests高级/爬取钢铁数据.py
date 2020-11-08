@@ -3,7 +3,8 @@
 '''
     目标网址：https://index.mysteel.com/price/indexPrice.html
     选择8.1-11.1 广州，螺纹钢，HRB400-20MM
-    爬取所有数据
+爬取[cityName，date， value]，保存为csv文件
+
 '''
 
 import requests
