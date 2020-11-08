@@ -1,4 +1,4 @@
-# The path of spider
+## The path of spider
 
 
 Detail 
@@ -21,3 +21,7 @@ Class 8: requests高级
 
 Class 9: selenium入门
 
+
+#### 资源链接（国内）
+Chrome驱动：https://npm.taobao.org/mirrors/chromedriver/
+火狐驱动：https://npm.taobao.org/mirrors/geckodriver/
