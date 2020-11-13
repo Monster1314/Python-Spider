@@ -10,6 +10,9 @@ import parsel
 import concurrent.futures
 import csv
 import time
+import multiprocessing
+
+lock = multiprocessing.Lock()  # 创建线程锁对象
 
 
 def send_requests(url):
@@ -43,7 +46,9 @@ def save_data(data):
         csv_writer = csv.writer(f)
         # csv_writer.writerow(['name', 'star', 'releasetime', 'score'])
         for i in data:
+            lock.acquire()  # 加锁
             csv_writer.writerow(i)
+            lock.release()
 
 
 def main(url):
