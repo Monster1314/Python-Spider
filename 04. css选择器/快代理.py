@@ -16,6 +16,7 @@ import parsel
 import time
 
 for page in range(1, 4):
+    # 请求数据
     url = f'https://www.kuaidaili.com/free/inha/{page}/'
     headers = {
         'Host': 'www.kuaidaili.com',
@@ -24,6 +25,8 @@ for page in range(1, 4):
 
     response = requests.get(url=url, headers=headers)
     response.encoding = response.apparent_encoding
+    
+    # 解析数据
     selector = parsel.Selector(response.text)
 
     ips = selector.css('table.table.table-bordered.table-striped tbody tr td:nth-child(1)::text').getall()

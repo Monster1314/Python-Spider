@@ -16,6 +16,11 @@ lock = multiprocessing.Lock()  # 创建线程锁对象
 
 
 def send_requests(url):
+    '''
+    向目标url发送请求
+    :param url: 目标网址 
+    :return: 请求返回response
+    '''
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36',
         'Host': 'maoyan.com',
@@ -26,6 +31,11 @@ def send_requests(url):
 
 
 def parse_data(data):
+    '''
+    解析数据
+    :param data: 传入的response数据
+    :return: 解析得到的数据列表list
+    '''
     selector = parsel.Selector(data.text)
     # print(selector)
 
@@ -42,6 +52,11 @@ def parse_data(data):
 
 
 def save_data(data):
+    """
+    保存数据的方法
+    :param data: 数据
+    :return: None
+    """
     with open('maoyan.csv', mode='a', encoding='utf-8', newline='') as f:
         csv_writer = csv.writer(f)
         # csv_writer.writerow(['name', 'star', 'releasetime', 'score'])
@@ -53,21 +68,23 @@ def save_data(data):
 
 def main(url):
     html = send_requests(url)
-
+    
     data_list = parse_data(html)
-
+    
     save_data(data_list)
 
 
 def multi_thread(url):
+    '''定义多线程'''
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
         executor.submit(main, url)
 
 
 if __name__ == '__main__':
+
     start_time = time.time()
 
-    with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=5) as executor:  # 多进程
         for page in range(0, 91, 10):
             url = f'https://maoyan.com/board/4?offset={page}'
             executor.submit(main, url)

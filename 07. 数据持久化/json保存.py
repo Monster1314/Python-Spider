@@ -14,13 +14,15 @@ import requests
 import json
 import parsel
 
+# 请求数据
 url = "https://www.ku6.com/video/feed?pageNo=0&pageSize=40&subjectId=76"
-
 res = requests.get(url=url).text
-# print(res)
 
-content = json.dumps(res, ensure_ascii=False)
+# 解析数据
+content = json.dumps(res, ensure_ascii=False)  # .dumps()将字符串转换成对象; ensure_ascii=False确保中文不乱码
 print(content)
 
+
+# 保存数据
 with open('data.json', mode='w', encoding='utf-8') as f:
     f.write(content)

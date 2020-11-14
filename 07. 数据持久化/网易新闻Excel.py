@@ -20,9 +20,8 @@ import openpyxl
 import re
 import json
 
-work_book = openpyxl.Workbook()
-sheet1 = work_book.create_sheet('网易新闻')
 
+# 请求数据
 url = 'https://temp.163.com/special/00804KVA/cm_yaowen20200213.js?callback=data_callback'
 headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
@@ -31,9 +30,14 @@ headers = {
 res = requests.get(url=url, headers=headers)
 res.encoding = res.apparent_encoding
 
+# 解析数据
 data = re.findall('data_callback\((.*?)\)', res.text, re.S)[0]
 json_data = json.loads(data)
 
+
+# 保存数据到excel
+work_book = openpyxl.Workbook()
+sheet1 = work_book.create_sheet('网易新闻')
 
 for li in json_data:
     title = li['title']

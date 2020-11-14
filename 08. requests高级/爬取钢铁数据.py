@@ -13,6 +13,7 @@ import re
 import csv
 import time
 
+# 请求数据
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
     'Referer': 'https://index.mysteel.com/',
@@ -34,11 +35,13 @@ params = {
 res = requests.get(url=url, headers=headers, params=params)
 # print(res.text)
 
+# 解析数据
 result = re.findall('callback\((.*?)\)', res.text, re.S)
 json_data = json.loads(result[0])
 
 title = json_data['title']
 
+# 保存数据至csv文件
 with open(title + '.csv', mode='a', encoding='utf-8', newline='') as f:
     csv_writer = csv.DictWriter(f, fieldnames=['lineName', 'date', 'value'])
     csv_writer.writeheader()

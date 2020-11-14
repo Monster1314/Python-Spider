@@ -24,6 +24,7 @@
 import requests
 import parsel
 
+# 请求数据
 url = 'https://nba.hupu.com/stats/players/pts'
 headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
@@ -32,6 +33,8 @@ headers = {
 
 res = requests.get(url=url, headers=headers)
 res.encoding = res.apparent_encoding
+
+# 解析数据
 selector = parsel.Selector(res.text)
 lis = selector.xpath('//tbody/tr')
 

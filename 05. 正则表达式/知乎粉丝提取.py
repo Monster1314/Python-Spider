@@ -16,17 +16,18 @@ headers = {
     'authority': 'www.zhihu.com',
 }
 for page in range(1, 11):
+    # 请求数据
     url = 'https://www.zhihu.com/people/ponyma/followers'
     params = {
         'page': page,
     }
     response = requests.get(url=url, headers=headers, params=params)
     response.encoding = response.apparent_encoding
-    # print(response.text)
 
+    # 解析数据，通过网页分析，正则表达式如下
     infos = re.findall('"id":".*?","urlToken":".*?","name":"(.*?)","useDefaultAvatar":.*?,"avatarUrl":"(.*?)",',
                        response.text, re.S)
-    # print(infos)
+
     for name, url in infos:
         # url = url.replace('\\u002F', '\\')
         url = url.encode().decode('unicode_escape')  # encode() 把数据以二进制编码 decode('unicode_escape')  指定解码

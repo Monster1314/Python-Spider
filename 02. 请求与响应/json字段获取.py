@@ -12,10 +12,14 @@
 """
 import requests
 
+# 请求数据
 url = 'https://www.ku6.com/video/feed?pageNo=0&pageSize=40&subjectId=76'
 response = requests.get(url=url)
 response.encoding = response.apparent_encoding
+
+# 返回是json数据，用.json()转换为json对象
 data = response.json()['data']
 
+# 解析数据
 for i in range(len(data)):
     print('title:', data[i]['title'], 'picPath:', data[i]['picPath'], 'playUrl:', data[i]['playUrl'])

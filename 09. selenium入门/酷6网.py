@@ -13,11 +13,13 @@
 
 from selenium import webdriver
 
+# 打开浏览器请求目标url
 driver = webdriver.Chrome(executable_path='chromedriver.exe')
 url = 'https://www.ku6.com/detail/71'
 driver.get(url=url)
 driver.implicitly_wait(10)
 
+# 查找渲染后的网页中的数据
 results = driver.find_elements_by_class_name('video-item')
 for result in results:
     title = result.find_element_by_xpath('.//div[2]/h3/a').text

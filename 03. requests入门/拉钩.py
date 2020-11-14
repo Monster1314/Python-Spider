@@ -19,6 +19,7 @@ import requests
 
 
 def get_cookies():
+    '''获取当前cookies，以便能够完成爬取过程'''
     url = 'https://www.lagou.com/jobs/list_python'
     headers = {
         'referer': 'https://www.lagou.com/',
@@ -31,11 +32,12 @@ def get_cookies():
 
     }
     response = requests.get(url=url, params=params, headers=headers)
-    cookies = response.cookies.get_dict()
+    cookies = response.cookies.get_dict()  # 获取cookies
     return cookies
 
 
 def get_info(cookies):
+    # 请求数据
     url = 'https://www.lagou.com/jobs/positionAjax.json'
     headers = {
         'origin': 'https://www.lagou.com/',
@@ -53,6 +55,8 @@ def get_info(cookies):
         'sid': '',
     }
     response = requests.post(url=url, headers=headers, params=params, data=data, cookies=cookies)
+    
+    # 解析数据
     ls = response.json()['content']['positionResult']['result']
     for work in ls:
         print(work["city"], work["companyFullName"], work["companySize"], work["education"], work["positionName"], work["salary"], work["workYear"])

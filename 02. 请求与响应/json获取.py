@@ -14,6 +14,6 @@ str1 = 'jQuery11240734383542212474_1603789123743({"appId":"svwebpc","sign":"","d
 
 import re
 
-result = re.findall('jQuery11240734383542212474_1603789123743\((.*?)\)', str1, re.S)
+result = re.findall('jQuery11240734383542212474_1603789123743\((.*?)\)', str1, re.S)  # 返回列表数据
 print(result[0])
-print(type(result[0]))
+

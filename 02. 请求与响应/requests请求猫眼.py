@@ -10,6 +10,8 @@
 import requests
 import re
 
+
+# 请求数据
 url = 'https://maoyan.com/board/4?offset=0'
 headers = {
     'Host': 'maoyan.com',
@@ -21,7 +23,7 @@ headers = {
 response = requests.get(url=url, headers=headers)
 response.encoding = response.apparent_encoding
 
-
+# 解析数据
 names = re.findall('<p class="name"><a href=".*?" title="(.*?)" data-act="boarditem-click" data-val=".*?">.*?</a></p>',
                    response.text, re.S)
 stars = re.findall('<p class="star">(.*?)</p>', response.text, re.S)

@@ -15,11 +15,21 @@ import concurrent.futures
 
 
 def send_requests(url):
+    '''
+    向目标url发送请求
+    :param url: 目标网址 
+    :return: 请求返回response
+    '''
     response = requests.get(url=url)
     return response
 
 
 def parse_data(json_data):
+    '''
+    解析数据
+    :param json_data: 传入的json数据
+    :return: 解析得到的图片url
+    '''
     ls = json_data['data']['object_list']
     img_urls = []
     for i in ls:
@@ -32,7 +42,7 @@ def save_data(filename, data):
     保存数据的方法
     :param filename: 文件名
     :param data: 图片数据
-    :return:
+    :return: None
     """
     if not os.path.exists('img'):
         os.mkdir('img')
@@ -61,8 +71,7 @@ def main(url):
 if __name__ == '__main__':
     start_time = time.time()  # 程序开始的时间
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:  # 多线程代理池
         for num in range(24, 1201, 24):
             url = f'https://www.duitang.com/napi/blog/list/by_search/?kw=%E8%9C%A1%E7%AC%94%E5%B0%8F%E6%96%B0&type=feeds&start={num}'
             executor.submit(main, url)

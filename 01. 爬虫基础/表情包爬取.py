@@ -15,18 +15,21 @@ headers = {
 }
 
 for page in range(1, 11):
+    # 请求数据
     page_url = 'https://fabiaoqing.com/biaoqing/lists/page/{}.html'.format(page)
     origin_url = 'https://fabiaoqing.com/'
     res = requests.get(url=page_url, headers=headers)
     res.encoding = res.apparent_encoding
 
-    '<img class="ui image lazy" data-original="(.*?)" src=".*?" title=".*?" alt=".*?"'
+    # 解析数据
     data_list = re.findall('<img class="ui image lazy" data-original="(.*?)" src=".*?" title=".*?" alt=".*?"', res.text, re.S)
-    # print(data_list)
+    
     for url in data_list:
-        url = url.replace('bmiddle', 'large')
+        url = url.replace('bmiddle', 'large')  # 经观察，源图片与目标图片url的区别
         img = requests.get(url=url, headers=headers).content
         name = url.split('/')[-1]
+        
+        # 保存数据
         with open(name, mode='wb') as f:
             f.write(img)
         print('下载完成：', name)

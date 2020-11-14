@@ -15,13 +15,17 @@
 import requests
 import parsel
 
+# 请求数据
 url = 'http://www.win4000.com/meinvtag17_1.html'
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
     'Host': 'www.win4000.com'
 }
+
 res = requests.get(url=url, headers=headers)
 res.encoding = res.apparent_encoding
+
+# 解析数据
 selector = parsel.Selector(res.text)
 lis = selector.xpath('//div[@class="w1180 clearfix"]/div/div/div[2]/div/div/ul/li')
 for li in lis:

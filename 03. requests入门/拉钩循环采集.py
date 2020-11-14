@@ -18,6 +18,7 @@ import time
 
 
 def get_cookies():
+    '''获取当前的cookies'''
     url = 'https://www.lagou.com/jobs/list_python'
     headers = {
         'referer': 'https://www.lagou.com/',
@@ -35,6 +36,7 @@ def get_cookies():
 
 
 def get_info(cookies, data):
+    # 请求数据
     url = 'https://www.lagou.com/jobs/positionAjax.json'
     headers = {
         'origin': 'https://www.lagou.com/',
@@ -47,6 +49,8 @@ def get_info(cookies, data):
     }
 
     response = requests.post(url=url, headers=headers, params=params, data=data, cookies=cookies)
+    
+    # 解析数据
     ls = response.json()['content']['positionResult']['result']
     for work in ls:
         print(work["city"], work["companyFullName"], work["companySize"], work["education"], work["positionName"], work["salary"], work["workYear"])
@@ -72,4 +76,4 @@ if __name__ == '__main__':
             'pn': page + 1,
         })
         print('-'*100)
-        time.sleep(2)
+        time.sleep(2)  # 延时，避免给服务器造成太大压力

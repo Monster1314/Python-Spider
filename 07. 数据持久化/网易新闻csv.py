@@ -20,6 +20,7 @@ import csv
 import re
 import json
 
+# 请求数据
 url = 'https://temp.163.com/special/00804KVA/cm_yaowen20200213.js?callback=data_callback'
 headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36',
@@ -28,24 +29,15 @@ headers = {
 res = requests.get(url=url, headers=headers)
 res.encoding = res.apparent_encoding
 
+# 解析数据
 data = re.findall('data_callback\((.*?)\)', res.text, re.S)[0]
 json_data = json.loads(data)
-print(json_data)
-
-# titles = re.findall('"title":"(.*?)",', data, re.S)
-# channel_names = re.findall('"channelname":"(.*?)",', data, re.S)
-# doc_urls = re.findall('"docurl":"(.*?)",', data, re.S)
-# img_urls = re.findall('"imgurl":"(.*?)",', data, re.S)
-# sources = re.findall('"source":"(.*?)",', data, re.S)
-# tlinks = re.findall('"tlink":"(.*?)",', data, re.S)
-# with open('网易新闻.csv', mode='w') as f:
-#     csv_writer = csv.writer(f)
-#     for i in range(len(titles)):
-#         print(titles[i], channel_names[i], doc_urls[i], img_urls[i], sources[i], tlinks[i])
-#         csv_writer.writerow([titles[i], channel_names[i], doc_urls[i], img_urls[i], sources[i], tlinks[i]])
+# print(json_data)
 
 
+# 保存数据
 with open('网易新闻.csv', mode='w', encoding='utf-8', newline='') as f:
+    # csv保存数据的写入
     csv_writer = csv.writer(f)
     for li in json_data:
         title = li['title']
