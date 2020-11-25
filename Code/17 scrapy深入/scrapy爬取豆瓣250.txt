@@ -1,0 +1,13 @@
+"""
+    使用 scrapy 爬取所有电影数据
+    需求:
+	1. 需要以下字段的信息
+   		 title（获取中文名即可）
+  		 info（导演、主演、时间、地点）
+   		 score（分数）
+   		 comment（评价人数）
+   		 quote（评语）
+	2. 写pipelines保存所有数据, 保存为csv格式的数据(需要用完整的pipelines去写)
+	
+
+"""

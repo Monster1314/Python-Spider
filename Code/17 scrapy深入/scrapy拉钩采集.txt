@@ -1,0 +1,11 @@
+1. 把拉钩前十页数据解析出来, 保存为csv数据需要以下字段信息:
+        'city': 城市
+        'companyFullName': 公司名
+        'companySize': 公司规模
+        'education': 学历
+        'positionName': 职位名称
+        'salary': 薪资
+        'workYear': 工作时间
+
+
+2.把上课的站长之家的案例动手敲一遍, 需要上交!!

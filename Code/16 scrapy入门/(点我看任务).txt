@@ -1,0 +1,10 @@
+"""
+目标网址: http://language.chinadaily.com.cn/thelatest
+
+需求:
+	使用scrapy框架采集精彩推荐前十页的数据, 保存为csv文件
+	需要采集以下:
+		标题
+		简介
+		图片对应的url地址
+"""
